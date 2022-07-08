@@ -13,7 +13,7 @@ def jogar():
 
         chute = input("Qual letra?")
         chute = chute.lower().strip()
-        index = 1
+        index = 0
         for letra in palavra_secreta:
             if(chute == letra):
                 print(f"Econtrei a letra {chute} na posição {index}")
