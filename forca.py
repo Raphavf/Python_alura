@@ -13,6 +13,7 @@ def jogar():
     enforcou = False
     acertou = False
     erros = 0
+    acertos = 0
     while(not enforcou and not acertou):
 
         chute = input("Qual letra?")
@@ -22,12 +23,16 @@ def jogar():
             for letra in palavra_secreta:
                 if(chute == letra):
                    letras_acertadas[index] = letra
-                index = index + 1
+                index += 1
         else:
-            erros = erros +1
-        enforcou = erros ==6
+            erros += 1
+        enforcou = erros == 6
+        acertou = '_' not in letras_acertadas
         print(letras_acertadas)
-
+    if(acertou):
+        print("Você ganhou!!")
+    else:
+        print("Você foi enforcado!")
 
     print("Fim de Jogo!")
 
