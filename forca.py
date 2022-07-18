@@ -20,25 +20,19 @@ def jogar():
     acertos = 0
     while(not enforcou and not acertou):
 
-        chute = input("Qual letra?")
-        chute = chute.lower().strip()
+        chute = pede_chute()
         if chute in palavra_secreta:
-            index = 0
-            for letra in palavra_secreta:
-                if(chute == letra):
-                   letras_acertadas[index] = letra
-                index += 1
+            marca_chute_correto(palavra_secreta, chute, letras_acertadas)
         else:
             erros += 1
         enforcou = erros == 6
         acertou = '_' not in letras_acertadas
         print(letras_acertadas)
     if(acertou):
-        print("Você ganhou!!")
+        mensagem_vencedor()
     else:
-        print("Você foi enforcado!")
+        mensagem_enforcado()
 
-    print("Fim de Jogo!")
 
 
 def mensagem_abertura():
@@ -62,6 +56,24 @@ def carrega_palavra_secreta():
 
 def inicializa_letras_acertadas(palavra):
     return ["_" for letra in palavra]
+
+def pede_chute():
+    chute = input("Qual letra?")
+    chute = chute.lower().strip()
+    return chute
+
+def marca_chute_correto(palavra_secreta, chute, letras_acertadas):
+    index = 0
+    for letra in palavra_secreta:
+        if (chute == letra):
+            letras_acertadas[index] = letra
+        index += 1
+
+def mensagem_vencedor():
+    print("Você ganhou!!")
+
+def mensagem_enforcado():
+    print("Você foi enforcado!")
 
 if(__name__=="__main__"):
     jogar()
